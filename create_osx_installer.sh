@@ -3,11 +3,11 @@
 set -e
 
 #Comment for development ----
-#git reset --hard
-#cd client
-#git reset --hard
-#cd ..
-#python3 build/replace_versions.py
+git reset --hard
+cd client
+git reset --hard
+cd ..
+python3 build/replace_versions.py
 #----
 
 rm -R osx-pkg || true
@@ -52,8 +52,8 @@ echo "OK=true" >> $UNINSTALLER
 
 chmod +x "$UNINSTALLER"
 
-VERSION_SHORT_NUM="2.5.3"
-VERSION_SHORT="2.5.3 beta"
+VERSION_SHORT_NUM="$version_num_short$"
+VERSION_SHORT="$version_short$"
 
 rm -R pkg1 || true
 mkdir pkg1 || true
@@ -76,4 +76,4 @@ makeself --nocomp --nomd5 --nocrc update_installer "UrBackupUpdateMac.sh" "UrBac
 #Uncomment for development
 #sudo pkgutil --forget org.urbackup.client.service || true
 #sudo pkgutil --forget org.urbackup.client || true
-#sudo rm -R "/Applications/UrBackup Client.app" || true
+#sudo rm -R "/Applications/UrBackup Client.app" || true 0
