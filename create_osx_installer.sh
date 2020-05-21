@@ -3,11 +3,11 @@
 set -e
 
 #Comment for development ----
-git reset --hard
-cd client
-git reset --hard
-cd ..
-python3 build/replace_versions.py
+#git reset --hard
+#cd client
+#git reset --hard
+#cd ..
+#python3 build/replace_versions.py
 #----
 
 rm -R osx-pkg || true
@@ -19,7 +19,7 @@ mkdir -p osx-pkg/Library/LaunchDaemons
 cp osx_installer/daemon.plist osx-pkg/Library/LaunchDaemons/org.urbackup.client.plist
 mkdir -p osx-pkg/Library/LaunchAgents
 cp osx_installer/agent.plist osx-pkg/Library/LaunchAgents/org.urbackup.client.plist
-./configure --enable-embedded-cryptopp --enable-clientupdate CXXFLAGS="-mmacosx-version-min=10.6 -DNDEBUG -DURB_WITH_CLIENTUPDATE" CFLAGS="-DNDEBUG -DURB_WITH_CLIENTUPDATE" LDFLAGS="-mmacosx-version-min=10.6" --prefix="/Applications/UrBackup Client.app/Contents/MacOS"
+./configure --enable-embedded-cryptopp --enable-clientupdate CXXFLAGS="-mmacosx-version-min=10.9 -DNDEBUG -DURB_WITH_CLIENTUPDATE -m64 -O3" CFLAGS="-DNDEBUG -DURB_WITH_CLIENTUPDATE -stdlib=libc++" LDFLAGS="-mmacosx-version-min=10.9" --prefix="/Applications/UrBackup Client.app/Contents/MacOS"
 make clean
 make -j5
 make install DESTDIR=$PWD/osx-pkg2
@@ -52,8 +52,8 @@ echo "OK=true" >> $UNINSTALLER
 
 chmod +x "$UNINSTALLER"
 
-VERSION_SHORT_NUM="$version_num_short$"
-VERSION_SHORT="$version_short$"
+VERSION_SHORT_NUM="2.5.3"
+VERSION_SHORT="2.5.3 beta"
 
 rm -R pkg1 || true
 mkdir pkg1 || true
