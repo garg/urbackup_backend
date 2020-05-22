@@ -57,6 +57,7 @@ VERSION_SHORT="2.5.3 beta"
 
 rm -R pkg1 || true
 mkdir pkg1 || true
+codesign --deep --verbose=4 --sign "Developer ID Application: Khurrum Maqbool (9P39FY9K6D)" osx-pkg2/Applications/UrBackup\ Client.app/
 pkgbuild --root osx-pkg --identifier org.urbackup.client.service --version $VERSION_SHORT_NUM --ownership recommended pkg1/output.pkg
 pkgbuild --root "osx-pkg2/Applications/UrBackup Client.app" --identifier "org.urbackup.client" --version $VERSION_SHORT_NUM --scripts osx_installer/scripts2 --ownership recommended pkg1/output2.pkg --install-location "/Applications/UrBackup Client.app"
 productbuild --distribution osx_installer/distribution.xml --resources osx_installer/resources --package-path pkg1 --version $VERSION_SHORT_NUM final.pkg
