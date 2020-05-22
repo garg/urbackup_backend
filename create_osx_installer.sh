@@ -52,8 +52,8 @@ echo "OK=true" >> $UNINSTALLER
 
 chmod +x "$UNINSTALLER"
 
-VERSION_SHORT_NUM="$version_num_short$"
-VERSION_SHORT="$version_short$"
+VERSION_SHORT_NUM="2.5.3"
+VERSION_SHORT="2.5.3 beta"
 
 rm -R pkg1 || true
 mkdir pkg1 || true
@@ -61,8 +61,9 @@ pkgbuild --root osx-pkg --identifier org.urbackup.client.service --version $VERS
 pkgbuild --root "osx-pkg2/Applications/UrBackup Client.app" --identifier "org.urbackup.client" --version $VERSION_SHORT_NUM --scripts osx_installer/scripts2 --ownership recommended pkg1/output2.pkg --install-location "/Applications/UrBackup Client.app"
 productbuild --distribution osx_installer/distribution.xml --resources osx_installer/resources --package-path pkg1 --version $VERSION_SHORT_NUM final.pkg
 
-security unlock-keychain -p foobar /Users/martin/Library/Keychains/dev.keychain
-productsign --keychain /Users/martin/Library/Keychains/dev.keychain --sign 3Y4WACCWC5 final.pkg final-signed.pkg
+#security unlock-keychain -p foobar /Users/martin/Library/Keychains/dev.keychain
+#productsign --keychain /Users/martin/Library/Keychains/dev.keychain --sign 3Y4WACCWC5 final.pkg final-signed.pkg
+productsign --sign "Developer ID Installer: Khurrum Maqbool (9P39FY9K6D)" final.pkg final-signed.pkg
 
 cp final-signed.pkg "UrBackup Client $VERSION_SHORT.pkg"
 
