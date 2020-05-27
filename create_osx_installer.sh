@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -e
-
+export wxUSE_MACOSX_VERSION_MIN=10.9
 #Comment for development ----
 git reset --hard
 cd client
