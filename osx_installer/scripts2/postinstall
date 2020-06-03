@@ -2,6 +2,8 @@
 
 set -e
 
+cp "$2/Contents/MacOS/Contents/Resources/lib/*" "/usr/local/lib/"
+
 if test -e "$1.cfg"
 then
 	cp "$1.cfg" "$2/Contents/MacOS/var/urbackup/initial_settings.cfg"
@@ -28,3 +30,5 @@ else
 		fi
 	done
 fi
+
+exit 0
