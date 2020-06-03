@@ -2,7 +2,7 @@
 
 set -e
 
-cp "$2/Contents/MacOS/Contents/Resources/lib/*" "/usr/local/lib/"
+cp "$2/Contents/Resources/lib/*" "/usr/local/lib/"
 
 if test -e "$1.cfg"
 then
